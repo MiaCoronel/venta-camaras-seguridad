@@ -6,6 +6,7 @@ public class Resena {
     private Integer calificacion;
     private Long clienteId; 
     private Long camaraId;  
+    
     public Resena() {}
 
     public Resena(Long id, String comentario, Integer calificacion, Long clienteId, Long camaraId) {

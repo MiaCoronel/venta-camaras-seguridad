@@ -14,14 +14,14 @@ public class ResenaService {
     public ResenaService() {
       
         resenas.add(new Resena(1L,
-                "La cámara Dome 4K tiene excelente calidad de imagen y es ideal para vigilancia en interiores.",
+                "La cámara MagikMini tiene excelente calidad de imagen y video.",
                 5,
                 101L,
                 1L));
 
         resenas.add(new Resena(2L,
-                "La cámara Bullet 1080p es económica y cumple bien para exteriores, aunque el zoom es limitado.",
-                4,
+                "La cámara 1080p es accesible, pero tiene limitaciones de acercamiento.",
+                3,
                 102L,
                 2L));
     }
