@@ -4,9 +4,8 @@ public class Resena {
     private Long id;
     private String comentario;
     private Integer calificacion;
-    private Long clienteId; // referencia al cliente
-    private Long camaraId;  // referencia a la cámara
-
+    private Long clienteId; 
+    private Long camaraId;  
     public Resena() {}
 
     public Resena(Long id, String comentario, Integer calificacion, Long clienteId, Long camaraId) {
