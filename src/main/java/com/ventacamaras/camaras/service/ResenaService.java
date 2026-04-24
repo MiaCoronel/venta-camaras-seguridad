@@ -22,8 +22,20 @@ public class ResenaService {
         resenas.add(new Resena(2L,
                 "La cámara 1080p es accesible, pero tiene limitaciones de acercamiento.",
                 3,
-                102L,
-                2L));
+                105L,
+                23L));
+
+        resenas.add(new Resena(3L,
+                "Desconforme, el producto se averio a la semana de comprarlo, no me dieron solucion.",
+                1,
+                106L,
+                12L));
+               
+        resenas.add(new Resena(4L,
+                "Buen producto, pero mal soporte al momento de adquirir el producto",
+                3,
+                109L,
+                10L));        
     }
 
     
