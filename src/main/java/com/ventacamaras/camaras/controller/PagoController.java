@@ -2,11 +2,9 @@ package com.ventacamaras.camaras.controller;
 
 import com.ventacamaras.camaras.model.Pago;
 import com.ventacamaras.camaras.service.PagoService;
-
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/pagos")
@@ -24,12 +22,14 @@ public class PagoController {
     }
 
     @GetMapping("/{pagoId}")
-    public Optional<Pago> obtenerPago(@PathVariable int pagoId) {
-        return pagoService.obtenerPorId(pagoId);
+    public ResponseEntity<Pago> obtenerPago(@PathVariable Integer pagoId) {
+        return pagoService.obtenerPorId(pagoId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/orden/{ordenId}")
-    public List<Pago> pagosPorOrden(@PathVariable int ordenId) {
+    public List<Pago> pagosPorOrden(@PathVariable Integer ordenId) {
         return pagoService.pagosPorOrden(ordenId);
     }
 
@@ -39,16 +39,25 @@ public class PagoController {
     }
 
     @PostMapping
-    public Pago procesarPago(@RequestParam double monto,
-                            @RequestParam String metodo,
-                            @RequestParam int ordenId,
-                             @RequestParam String estado) {
-        return pagoService.registrarPago(monto, metodo, ordenId, estado);
+    public ResponseEntity<Pago> procesarPago(@RequestParam double monto,
+                                             @RequestParam String metodo,
+                                             @RequestParam Integer ordenId,
+                                             @RequestParam String estado) {
+        try {
+            Pago nuevoPago = pagoService.registrarPago(monto, metodo, ordenId, estado);
+            return ResponseEntity.ok(nuevoPago);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PutMapping("/{pagoId}/estado")
-    public boolean cambiarEstado(@PathVariable int pagoId,
-                                 @RequestParam String nuevoEstado) {
-        return pagoService.cambiarEstado(pagoId, nuevoEstado);
+    public ResponseEntity<Void> cambiarEstado(@PathVariable Integer pagoId,
+                                              @RequestParam String nuevoEstado) {
+        boolean cambiado = pagoService.cambiarEstado(pagoId, nuevoEstado);
+        if (cambiado) {
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }

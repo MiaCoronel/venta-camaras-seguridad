@@ -1,39 +1,38 @@
 package com.ventacamaras.camaras.service;
 
 import com.ventacamaras.camaras.model.Camara;
+import com.ventacamaras.camaras.repository.CamaraRepository;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class CamaraService {
     
-    private List<Camara> camaras = new ArrayList<>();
-    private Long siguienteId = 1L;
+    private final CamaraRepository camaraRepository;
 
-    public CamaraService() {
-        camaras.add(new Camara(siguienteId++, "Camara Dome 4K", "4K", "Dome", 129.99, 10));
-        camaras.add(new Camara(siguienteId++, "Camara Bullet 1080p", "1080p", "Bullet", 79.99, 15));
-        camaras.add(new Camara(siguienteId++, "Camara PTZ 2K", "2K", "PTZ", 249.99, 5));
+    // Inyectamos el repositorio a través del constructor
+    public CamaraService(CamaraRepository camaraRepository) {
+        this.camaraRepository = camaraRepository;
     }
 
     public List<Camara> obtenerTodas() {
-        return camaras;
+        return camaraRepository.findAll();
     }
 
     public Optional<Camara> obtenerPorId(Long id) {
-        return camaras.stream().filter(c -> c.getId().equals(id)).findFirst();
+        return camaraRepository.findById(id);
     }
 
     public Camara guardar(Camara camara) {
-        camara.setId(siguienteId++);
-        camaras.add(camara);
-        return camara;
+        // JPA asignará el ID automáticamente y lo guardará en MySQL
+        return camaraRepository.save(camara);
     }
 
     public Camara actualizar(Long id, Camara camaraActualizada) {
-        Optional<Camara> existente = obtenerPorId(id);
+        Optional<Camara> existente = camaraRepository.findById(id);
+        
         if (existente.isPresent()) {
             Camara camara = existente.get();
             camara.setNombre(camaraActualizada.getNombre());
@@ -41,12 +40,18 @@ public class CamaraService {
             camara.setTipo(camaraActualizada.getTipo());
             camara.setPrecio(camaraActualizada.getPrecio());
             camara.setStock(camaraActualizada.getStock());
-            return camara;
+            
+            // save() actúa como UPDATE si el objeto ya tiene un ID existente en la BD
+            return camaraRepository.save(camara);
         }
         return null;
     }
 
     public boolean eliminar(Long id) {
-        return camaras.removeIf(c -> c.getId().equals(id));
+        if (camaraRepository.existsById(id)) {
+            camaraRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

@@ -1,22 +1,39 @@
 package com.ventacamaras.camaras.model;
 
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "ordenes")
 public class Orden {
-    private int id;
-    private String cliente;
-    private String producto;
-    private int cantidad;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id; // <-- CAMBIADO A Integer
 
-    public Orden(int id, String cliente, String producto, int cantidad) {
+    @Column(nullable = false)
+    private String cliente;
+    
+    @Column(nullable = false)
+    private String producto;
+    
+    @Column(nullable = false)
+    private Integer cantidad; // <-- CAMBIADO A Integer
+
+    public Orden() {}
+
+    public Orden(Integer id, String cliente, String producto, Integer cantidad) {
         this.id = id;
         this.cliente = cliente;
         this.producto = producto;
         this.cantidad = cantidad;
     }
 
-    public int getId() { return id; }
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
     public String getCliente() { return cliente; }
+    public void setCliente(String cliente) { this.cliente = cliente; }
     public String getProducto() { return producto; }
-    public int getCantidad() { return cantidad; }
+    public void setProducto(String producto) { this.producto = producto; }
+    public Integer getCantidad() { return cantidad; }
+    public void setCantidad(Integer cantidad) { this.cantidad = cantidad; }
 }
-
