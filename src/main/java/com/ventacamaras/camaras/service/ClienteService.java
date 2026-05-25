@@ -1,54 +1,97 @@
 package com.ventacamaras.camaras.service;
 
-import java.util.List;
-import java.util.Optional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import com.ventacamaras.camaras.model.Cliente;
 import com.ventacamaras.camaras.repository.ClienteRepository;
+import com.ventacamaras.camaras.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import java.util.List;
+import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ClienteService {
-
     private final ClienteRepository clienteRepository;
+    private final UserRepository userRepository;
 
-    // Inyección de dependencias por constructor
-    public ClienteService(ClienteRepository clienteRepository) {
-        this.clienteRepository = clienteRepository;
-    }
-
-    // Listar todos los clientes de la base de datos
-    public List<Cliente> listar() {
-        return clienteRepository.findAll();
-    }
-
-    // Buscar un cliente por su ID utilizando Optional
-    public Optional<Cliente> obtenerPorId(Integer id) {
-        return clienteRepository.findById(id);
-    }
-
-    // Guardar un nuevo cliente en MySQL
-    public Cliente guardar(Cliente cliente) {
+    /**
+     * Crear un nuevo cliente
+     */
+    public Cliente crearCliente(Cliente cliente) {
+        if (clienteRepository.findByEmail(cliente.getEmail()).isPresent()) {
+            throw new IllegalArgumentException("El email ya está registrado");
+        }
         return clienteRepository.save(cliente);
     }
 
-    // Actualizar datos de un cliente existente
-    public Optional<Cliente> actualizar(Integer id, Cliente datos) {
-        Optional<Cliente> clienteExistente = clienteRepository.findById(id);
-        if (clienteExistente.isPresent()) {
-            Cliente cliente = clienteExistente.get();
-            cliente.setNombre(datos.getNombre());
-            cliente.setEmail(datos.getEmail());
-            return Optional.of(clienteRepository.save(cliente));
-        }
-        return Optional.empty();
+
+    public Optional<Cliente> obtenerPorId(Long id) {
+        return clienteRepository.findById(id);
     }
 
-    // Eliminar un cliente si existe en la base de datos
-    public boolean eliminar(Integer id) {
-        if (clienteRepository.existsById(id)) {
-            clienteRepository.deleteById(id);
-            return true;
-        }
-        return false;
+
+    public Optional<Cliente> obtenerPorEmail(String email) {
+        return clienteRepository.findByEmail(email);
+    }
+
+
+    public Optional<Cliente> obtenerPorUserId(Long userId) {
+        return clienteRepository.findByUserId(userId);
+    }
+
+    /**
+     * Buscar clientes por nombre (con query personalizado)
+     */
+    public List<Cliente> buscarPorNombre(String nombre) {
+        return clienteRepository.buscarPorNombre(nombre);
+    }
+
+    /**
+     * Buscar cliente por teléfono (con query personalizado)
+     */
+    public Optional<Cliente> buscarPorTelefono(String telefono) {
+        return clienteRepository.buscarPorTelefono(telefono);
+    }
+
+
+    public List<Cliente> listarClientes() {
+        return clienteRepository.findAll();
+    }
+
+
+    public Cliente actualizarCliente(Long id, Cliente clienteActualizado) {
+        Cliente cliente = clienteRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Cliente no encontrado"));
+
+        cliente.setNombre(clienteActualizado.getNombre());
+        cliente.setEmail(clienteActualizado.getEmail());
+        cliente.setDireccion(clienteActualizado.getDireccion());
+        cliente.setTelefono(clienteActualizado.getTelefono());
+
+        return clienteRepository.save(cliente);
+    }
+
+    /**
+     * Eliminar cliente y deshabilitar su usuario asociado
+     * Transacción para garantizar integridad: si falla algo, se revierte todo
+     */
+    @Transactional
+    public void eliminarCliente(Long id) {
+        Cliente cliente = clienteRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Cliente no encontrado"));
+
+        // Obtener el usuario asociado al cliente
+        Long userId = cliente.getUser().getId();
+
+        // Deshabilitar el usuario
+        userRepository.findById(userId).ifPresent(user -> {
+            user.setEnabled(false);
+            userRepository.save(user);
+        });
+
+        // Eliminar el cliente
+        clienteRepository.deleteById(id);
     }
 }
+
