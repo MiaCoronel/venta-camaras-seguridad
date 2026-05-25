@@ -14,20 +14,12 @@ import java.util.Optional;
 public class ClienteController {
     private final ClienteService clienteService;
 
-    /**
-     * Crear un nuevo cliente
-     * POST /clientes
-     */
     @PostMapping
     public ResponseEntity<Cliente> crearCliente(@RequestBody Cliente cliente) {
         Cliente clienteCreado = clienteService.crearCliente(cliente);
         return ResponseEntity.ok(clienteCreado);
     }
 
-    /**
-     * Obtener cliente por ID
-     * GET /clientes/{id}
-     */
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> obtenerCliente(@PathVariable Long id) {
         Optional<Cliente> cliente = clienteService.obtenerPorId(id);
@@ -35,10 +27,7 @@ public class ClienteController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    /**
-     * Obtener cliente por email
-     * GET /clientes/email/{email}
-     */
+
     @GetMapping("/email/{email}")
     public ResponseEntity<Cliente> obtenerPorEmail(@PathVariable String email) {
         Optional<Cliente> cliente = clienteService.obtenerPorEmail(email);
@@ -68,10 +57,7 @@ public class ClienteController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    /**
-     * Listar todos los clientes
-     * GET /clientes
-     */
+
     @GetMapping
     public ResponseEntity<List<Cliente>> listarClientes() {
         List<Cliente> clientes = clienteService.listarClientes();
