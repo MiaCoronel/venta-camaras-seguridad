@@ -1,3 +1,14 @@
+error id: file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/CODIGO/v1.1.3/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/service/ResenaService.java:_empty_/Transactional#readOnly#
+file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/CODIGO/v1.1.3/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/service/ResenaService.java
+empty definition using pc, found symbol in pc: _empty_/Transactional#readOnly#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 2535
+uri: file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/CODIGO/v1.1.3/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/service/ResenaService.java
+text:
+```scala
 package com.ventacamaras.camaras.service;
 
 import com.ventacamaras.camaras.model.Camara;
@@ -64,7 +75,7 @@ public class ResenaService {
         return resenaRepository.findByCamaraIdAndCalificacionGreaterThanEqual(camaraId, minCalificacion);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional(rea@@dOnly = true)
     public Double obtenerPromedio(Long camaraId) {
         Double promedio = resenaRepository.obtenerPromedioCalificacion(camaraId);
         return promedio != null ? promedio : 0.0;
@@ -75,3 +86,9 @@ public class ResenaService {
         resenaRepository.deleteById(id);
     }
 }
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: _empty_/Transactional#readOnly#

@@ -1,3 +1,14 @@
+error id: file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/CODIGO/v1.1.3/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/service/ResenaService.java:_empty_/ResenaRepository#findByCamaraIdAndCalificacionGreaterThanEqual#
+file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/CODIGO/v1.1.3/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/service/ResenaService.java
+empty definition using pc, found symbol in pc: _empty_/ResenaRepository#findByCamaraIdAndCalificacionGreaterThanEqual#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 2446
+uri: file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/CODIGO/v1.1.3/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/service/ResenaService.java
+text:
+```scala
 package com.ventacamaras.camaras.service;
 
 import com.ventacamaras.camaras.model.Camara;
@@ -61,7 +72,7 @@ public class ResenaService {
 
     @Transactional(readOnly = true)
     public List<Resena> listarPorCalificacionMinima(Long camaraId, Integer minCalificacion) {
-        return resenaRepository.findByCamaraIdAndCalificacionGreaterThanEqual(camaraId, minCalificacion);
+        return resenaRepository.findByCamaraIdAnd@@CalificacionGreaterThanEqual(camaraId, minCalificacion);
     }
 
     @Transactional(readOnly = true)
@@ -75,3 +86,9 @@ public class ResenaService {
         resenaRepository.deleteById(id);
     }
 }
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: _empty_/ResenaRepository#findByCamaraIdAndCalificacionGreaterThanEqual#

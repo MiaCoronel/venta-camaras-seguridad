@@ -1,3 +1,14 @@
+error id: file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/CODIGO/v1.1.3/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/model/Resena.java:_empty_/JoinColumn#
+file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/CODIGO/v1.1.3/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/model/Resena.java
+empty definition using pc, found symbol in pc: _empty_/JoinColumn#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 741
+uri: file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/CODIGO/v1.1.3/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/model/Resena.java
+text:
+```scala
 package com.ventacamaras.camaras.model;
 
 import jakarta.persistence.*;
@@ -31,10 +42,16 @@ public class Resena {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "camara_id", nullable = false)
+    @Jo@@inColumn(name = "camara_id", nullable = false)
     private Camara camara;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 }
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: _empty_/JoinColumn#

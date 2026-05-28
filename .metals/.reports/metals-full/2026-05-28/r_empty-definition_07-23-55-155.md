@@ -1,3 +1,14 @@
+error id: file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/CODIGO/v1.1.3/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/service/ResenaService.java:java/lang/RuntimeException#
+file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/CODIGO/v1.1.3/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/service/ResenaService.java
+empty definition using pc, found symbol in pc: java/lang/RuntimeException#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 1407
+uri: file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/CODIGO/v1.1.3/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/service/ResenaService.java
+text:
+```scala
 package com.ventacamaras.camaras.service;
 
 import com.ventacamaras.camaras.model.Camara;
@@ -32,7 +43,7 @@ public class ResenaService {
                 .orElseThrow(() -> new RuntimeException("Cámara no encontrada con id: " + camaraId));
 
         if (calificacion < 1 || calificacion > 5) {
-            throw new RuntimeException("La calificación debe estar entre 1 y 5");
+            throw new @@RuntimeException("La calificación debe estar entre 1 y 5");
         }
 
         if (resenaRepository.existeResenaDeClienteEnCamara(camaraId, cliente.getId())) {
@@ -75,3 +86,9 @@ public class ResenaService {
         resenaRepository.deleteById(id);
     }
 }
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: java/lang/RuntimeException#
