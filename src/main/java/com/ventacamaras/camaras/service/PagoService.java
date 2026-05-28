@@ -38,7 +38,6 @@ public class PagoService {
         }
 
         Pago pago = new Pago();
-        pago.setOrdenId(ordenId);
         pago.setMonto(monto);
         pago.setMetodo(metodo);
         pago.setEstado("COMPLETADO");

@@ -14,23 +14,16 @@ public class Pago {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    // pagos.orden_id → ordenes.id (unique: 1 pago por orden)
-    @Column(name = "orden_id", nullable = false, unique = true)
-    private Integer ordenId;
+    @OneToOne
+    @JoinColumn(name = "orden_id", nullable = false, unique = true)
+    private Orden orden;
 
     @Column(nullable = false)
     private Double monto;
 
-    // BD: metodo VARCHAR(50)
     @Column(nullable = false, length = 50)
     private String metodo;
 
-    // BD: estado VARCHAR(50) DEFAULT 'PENDIENTE'
     @Column(nullable = false, length = 50)
     private String estado = "PENDIENTE";
-
-    public void setOrden(Orden orden) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setOrden'");
-    }
 }

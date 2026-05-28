@@ -9,7 +9,8 @@ import java.util.Optional;
 
 public interface PagoRepository extends JpaRepository<Pago, Integer> {
 
-    Optional<Pago> findByOrdenId(Integer ordenId);
+    @Query("SELECT p FROM Pago p WHERE p.orden.id = :ordenId")
+    Optional<Pago> findByOrdenId(@Param("ordenId") Integer ordenId);
 
     List<Pago> findByEstado(String estado);
 

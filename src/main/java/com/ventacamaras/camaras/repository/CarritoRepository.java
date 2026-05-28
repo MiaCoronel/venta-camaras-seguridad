@@ -11,7 +11,6 @@ import java.util.Optional;
 @Repository
 public interface CarritoRepository extends JpaRepository<Carrito, Long> {
     
-    Optional<Carrito> findByUsuarioId(String username);
 
     @Query("SELECT c FROM Carrito c LEFT JOIN FETCH c.items WHERE c.usuario.username = :username")
     Optional<Carrito> findByUsuarioUsernameConItems(@Param("username") String username);

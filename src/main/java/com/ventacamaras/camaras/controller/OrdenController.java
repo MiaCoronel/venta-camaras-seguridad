@@ -1,5 +1,6 @@
 package com.ventacamaras.camaras.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -10,11 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ventacamaras.camaras.service.OrdenService;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/ordenes")
 public class OrdenController {
 
-    @Autowired
-    private OrdenService ordenService;
+
+    private final OrdenService ordenService;
 
     @PostMapping("/checkout")
     public ResponseEntity<?> checkout(

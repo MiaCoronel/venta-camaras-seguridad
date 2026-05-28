@@ -1,6 +1,6 @@
 package com.ventacamaras.camaras.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import com.ventacamaras.camaras.model.Carrito;
@@ -10,26 +10,23 @@ import com.ventacamaras.camaras.repository.CarritoRepository;
 import com.ventacamaras.camaras.repository.OrdenRepository;
 import com.ventacamaras.camaras.repository.PagoRepository;
 
-import jakarta.transaction.Transactional;
-
+import org.springframework.transaction.annotation.Transactional;
+@RequiredArgsConstructor
 @Service
 public class OrdenService {
 
-    @Autowired
-    private OrdenRepository ordenRepository;
+    private final OrdenRepository ordenRepository;
 
-    @Autowired
-    private CarritoRepository carritoRepository;
+    private final CarritoRepository carritoRepository;
 
-    @Autowired
-    private PagoRepository pagoRepository;
+    private final PagoRepository pagoRepository;
 
     @Transactional
     public Orden checkout(String username, String metodoPago){
 
         Carrito carrito =
                 carritoRepository
-                .findByUsuarioId(username)
+                .findByUsuarioUsernameConItems(username)
                 .orElseThrow(() ->
                     new RuntimeException(
                         "Carrito no encontrado"));
