@@ -26,13 +26,12 @@ public class PagoService {
         return pagoRepository.findByOrdenId(ordenId);
     }
 
-    public List<Pago> buscarPorEstadoYMonto(String estado, Double montoMinimo) {
+    public List<Pago> buscarPorEstadoYMontoMinimo(String estado, Double montoMinimo) {
         return pagoRepository.buscarPorEstadoYMontoMinimo(estado, montoMinimo);
     }
 
     @Transactional
     public Pago registrarPago(Integer ordenId, Double monto, String metodo) {
-        // Verificar que no exista ya un pago para esa orden
         if (pagoRepository.findByOrdenId(ordenId).isPresent()) {
             throw new RuntimeException("Ya existe un pago para la orden: " + ordenId);
         }
