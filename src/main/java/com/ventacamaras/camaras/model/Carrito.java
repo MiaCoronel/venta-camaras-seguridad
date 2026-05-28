@@ -32,4 +32,9 @@ public class Carrito {
         }
         return items.stream().mapToDouble(ItemCarrito::getSubtotal).sum();
     }
+
+    public User getUser() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getUser'");
+    }
 }

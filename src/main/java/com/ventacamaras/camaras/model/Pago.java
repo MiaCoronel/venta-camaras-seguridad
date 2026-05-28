@@ -28,4 +28,9 @@ public class Pago {
     // BD: estado VARCHAR(50) DEFAULT 'PENDIENTE'
     @Column(nullable = false, length = 50)
     private String estado = "PENDIENTE";
+
+    public void setOrden(Orden orden) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setOrden'");
+    }
 }
