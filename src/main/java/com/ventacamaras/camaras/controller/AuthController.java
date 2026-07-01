@@ -1,10 +1,9 @@
 package com.ventacamaras.camaras.controller;
 
+import com.ventacamaras.camaras.model.User;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
 import com.ventacamaras.camaras.dto.AuthResponse;
 import com.ventacamaras.camaras.dto.LoginRequest;
 import com.ventacamaras.camaras.dto.RegisterRequest;
@@ -27,6 +26,15 @@ public class AuthController {
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
         AuthResponse response = authService.login(request);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<User> me(Authentication authentication) {
+
+        return ResponseEntity.ok(
+                authService.getByUsername(authentication.getName())
+        );
+
     }
 }
 

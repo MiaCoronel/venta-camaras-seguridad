@@ -84,6 +84,11 @@ public class AuthService {
                 .token(token)
                 .build();
     }
+    //retornar usuario por username
+    public User getByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
+    }
 }
 
 
