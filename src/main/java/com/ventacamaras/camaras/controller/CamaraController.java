@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+// Controlador encargado de gestionar las operaciones CRUD de cámaras de seguridad
+
 @RestController
 @RequestMapping("/api/camaras")
 @RequiredArgsConstructor
@@ -48,7 +50,7 @@ public class CamaraController {
 
     @GetMapping("/buscar/rango-precio")
     public ResponseEntity<List<Camara>> buscarPorRangoPrecio(@RequestParam Double min,
-                                                              @RequestParam Double max) {
+            @RequestParam Double max) {
         List<Camara> camaras = camaraService.buscarPorRangoPrecio(min, max);
         return ResponseEntity.ok(camaras);
     }
@@ -67,7 +69,7 @@ public class CamaraController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Camara> actualizarCamara(@PathVariable Long id,
-                                                    @RequestBody Camara camaraActualizada) {
+            @RequestBody Camara camaraActualizada) {
         Camara camara = camaraService.actualizarCamara(id, camaraActualizada);
         return ResponseEntity.ok(camara);
     }
@@ -80,14 +82,14 @@ public class CamaraController {
 
     @PutMapping("/{id}/precio")
     public ResponseEntity<Camara> actualizarPrecio(@PathVariable Long id,
-                                                    @RequestParam Double nuevoPrecio) {
+            @RequestParam Double nuevoPrecio) {
         Camara camara = camaraService.actualizarPrecio(id, nuevoPrecio);
         return ResponseEntity.ok(camara);
     }
 
     @PutMapping("/{id}/descontar-stock")
     public ResponseEntity<String> descontarStock(@PathVariable Long id,
-                                                  @RequestParam Integer cantidad) {
+            @RequestParam Integer cantidad) {
         camaraService.descontarStock(id, cantidad);
         return ResponseEntity.ok("Stock descontado correctamente");
     }
