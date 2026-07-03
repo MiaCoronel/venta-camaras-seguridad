@@ -1,8 +1,19 @@
+error id: file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/PROYECTO-FINAL/versiones/v1.1.7/backend/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/service/CarritoService.java:com/ventacamaras/camaras/model/ItemCarrito#
+file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/PROYECTO-FINAL/versiones/v1.1.7/backend/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/service/CarritoService.java
+empty definition using pc, found symbol in pc: com/ventacamaras/camaras/model/ItemCarrito#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 178
+uri: file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/PROYECTO-FINAL/versiones/v1.1.7/backend/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/service/CarritoService.java
+text:
+```scala
 package com.ventacamaras.camaras.service;
 
 import com.ventacamaras.camaras.model.Camara;
 import com.ventacamaras.camaras.model.Carrito;
-import com.ventacamaras.camaras.model.ItemCarrito;
+import com.ventacamaras.camaras.model.@@ItemCarrito;
 import com.ventacamaras.camaras.model.User;
 import com.ventacamaras.camaras.repository.CamaraRepository;
 import com.ventacamaras.camaras.repository.CarritoRepository;
@@ -73,61 +84,10 @@ public class CarritoService {
                     return Carrito.builder().usuario(usuario).items(new ArrayList<>()).build();
                 });
     }
-
-    @Transactional
-    public Carrito incrementarCantidadItem(String username, Long itemId) {
-        Carrito carrito = carritoRepository.findByUsuarioUsernameConItems(username)
-                .orElseThrow(() -> new RuntimeException("Carrito no encontrado"));
-
-        ItemCarrito item = carrito.getItems().stream()
-                .filter(i -> i.getId().equals(itemId))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("Item no encontrado en el carrito"));
-
-        item.setCantidad(item.getCantidad() + 1);
-
-        return carritoRepository.save(carrito);
-    }
-
-    @Transactional
-    public Carrito decrementarCantidadItem(String username, Long itemId) {
-        Carrito carrito = carritoRepository.findByUsuarioUsernameConItems(username)
-                .orElseThrow(() -> new RuntimeException("Carrito no encontrado"));
-
-        ItemCarrito item = carrito.getItems().stream()
-                .filter(i -> i.getId().equals(itemId))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("Item no encontrado en el carrito"));
-
-        if (item.getCantidad() <= 1) {
-            // eliminar item
-            carrito.getItems().remove(item);
-        } else {
-            item.setCantidad(item.getCantidad() - 1);
-        }
-
-        return carritoRepository.save(carrito);
-    }
-
-    @Transactional
-    public Carrito eliminarItemDelCarrito(String username, Long itemId) {
-        Carrito carrito = carritoRepository.findByUsuarioUsernameConItems(username)
-                .orElseThrow(() -> new RuntimeException("Carrito no encontrado"));
-
-        boolean removed = carrito.getItems().removeIf(i -> i.getId().equals(itemId));
-        if (!removed) {
-            throw new RuntimeException("Item no encontrado en el carrito");
-        }
-
-        return carritoRepository.save(carrito);
-    }
-
-    @Transactional
-    public void vaciarCarrito(String username) {
-        Carrito carrito = carritoRepository.findByUsuarioUsernameConItems(username)
-                .orElseThrow(() -> new RuntimeException("Carrito no encontrado"));
-
-        carrito.getItems().clear();
-        carritoRepository.save(carrito);
-    }
 }
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: com/ventacamaras/camaras/model/ItemCarrito#

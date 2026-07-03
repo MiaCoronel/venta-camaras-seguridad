@@ -1,8 +1,19 @@
+error id: file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/PROYECTO-FINAL/versiones/v1.1.7/backend/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/controller/ClienteController.java:com/ventacamaras/camaras/dto/ClienteRequest#
+file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/PROYECTO-FINAL/versiones/v1.1.7/backend/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/controller/ClienteController.java
+empty definition using pc, found symbol in pc: com/ventacamaras/camaras/dto/ClienteRequest#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 184
+uri: file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/PROYECTO-FINAL/versiones/v1.1.7/backend/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/controller/ClienteController.java
+text:
+```scala
 package com.ventacamaras.camaras.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.ventacamaras.camaras.dto.ClienteRequest;
+import com.ventacamaras.camaras.dto.@@ClienteRequest;
 import com.ventacamaras.camaras.model.Cliente;
 import com.ventacamaras.camaras.service.ClienteService;
 import lombok.RequiredArgsConstructor;
@@ -80,3 +91,10 @@ public class ClienteController {
     }
 }
 
+
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: com/ventacamaras/camaras/dto/ClienteRequest#

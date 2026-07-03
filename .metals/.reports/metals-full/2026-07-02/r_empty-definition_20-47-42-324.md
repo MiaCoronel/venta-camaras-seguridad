@@ -1,10 +1,21 @@
+error id: file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/PROYECTO-FINAL/versiones/v1.1.7/backend/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/service/ClienteService.java:com/ventacamaras/camaras/model/User#
+file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/PROYECTO-FINAL/versiones/v1.1.7/backend/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/service/ClienteService.java
+empty definition using pc, found symbol in pc: com/ventacamaras/camaras/model/User#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 298
+uri: file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/PROYECTO-FINAL/versiones/v1.1.7/backend/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/service/ClienteService.java
+text:
+```scala
 package com.ventacamaras.camaras.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.ventacamaras.camaras.dto.ClienteRequest;
 import com.ventacamaras.camaras.model.Cliente;
-import com.ventacamaras.camaras.model.User;
+import com.ventacamaras.camaras.model.@@User;
 import com.ventacamaras.camaras.repository.ClienteRepository;
 import com.ventacamaras.camaras.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -113,3 +124,10 @@ public class ClienteService {
     }
 }
 
+
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: com/ventacamaras/camaras/model/User#

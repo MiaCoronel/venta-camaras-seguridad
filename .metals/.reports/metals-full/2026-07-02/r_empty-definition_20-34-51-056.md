@@ -1,11 +1,20 @@
+error id: file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/PROYECTO-FINAL/versiones/v1.1.7/backend/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/service/ClienteService.java:com/ventacamaras/camaras/repository/ClienteRepository#
+file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/PROYECTO-FINAL/versiones/v1.1.7/backend/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/service/ClienteService.java
+empty definition using pc, found symbol in pc: com/ventacamaras/camaras/repository/ClienteRepository#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 250
+uri: file:///C:/Users/JHONATAN/OneDrive/Escritorio/DESARROLLO%20WEB/PROYECTO-FINAL/versiones/v1.1.7/backend/venta-camaras-seguridad/src/main/java/com/ventacamaras/camaras/service/ClienteService.java
+text:
+```scala
 package com.ventacamaras.camaras.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.ventacamaras.camaras.dto.ClienteRequest;
 import com.ventacamaras.camaras.model.Cliente;
-import com.ventacamaras.camaras.model.User;
-import com.ventacamaras.camaras.repository.ClienteRepository;
+import com.ventacamaras.camaras.repository.@@ClienteRepository;
 import com.ventacamaras.camaras.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import java.util.List;
@@ -20,26 +29,10 @@ public class ClienteService {
     /**
      * Crear un nuevo cliente
      */
-    public Cliente crearCliente(ClienteRequest clienteRequest) {
-        if (clienteRepository.findByEmail(clienteRequest.getEmail()).isPresent()) {
+    public Cliente crearCliente(Cliente cliente) {
+        if (clienteRepository.findByEmail(cliente.getEmail()).isPresent()) {
             throw new IllegalArgumentException("El email ya está registrado");
         }
-
-        if (clienteRequest.getUserId() == null) {
-            throw new IllegalArgumentException("El cliente necesita un userId");
-        }
-
-        User user = userRepository.findById(clienteRequest.getUserId())
-                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
-
-        Cliente cliente = Cliente.builder()
-                .nombre(clienteRequest.getNombre())
-                .email(clienteRequest.getEmail())
-                .direccion(clienteRequest.getDireccion())
-                .telefono(clienteRequest.getTelefono())
-                .user(user)
-                .build();
-
         return clienteRepository.save(cliente);
     }
 
@@ -113,3 +106,10 @@ public class ClienteService {
     }
 }
 
+
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: com/ventacamaras/camaras/repository/ClienteRepository#
